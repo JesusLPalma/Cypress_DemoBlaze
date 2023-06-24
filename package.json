@@ -4,8 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "open":"cypress open"
+    "clean": "rimraf ./allure-report && rimraf allure-results",
+    "prueba": "cypress run --headed --env allure=true",
+    "reporte": "allure generate allure-results -o allure-report --clean",
+    "abrir": "allure open",
+    "open": "cypress open",
+    "test": "npm run clean && npm run prueba && npm run reporte && npm run abrir"
   },
   "repository": {
     "type": "git",
@@ -19,6 +23,8 @@
   },
   "homepage": "https://github.com/JesusLPalma/Cypress_DemoBlaze#readme",
   "devDependencies": {
+    "@shelex/cypress-allure-plugin": "^2.40.0",
+    "allure-commandline": "^2.22.4",
     "cypress": "^12.15.0"
   }
 }
